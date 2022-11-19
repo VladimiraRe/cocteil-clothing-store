@@ -1,0 +1,32 @@
+.header {
+    display: none;
+    justify-content: space-between;
+    padding-top: 49px;
+    align-items: center;
+
+    @media (min-width: $tablet-width) {
+        display: flex;
+    }
+}
+.header__burger {
+    fill: $second;
+}
+.header__wrap {
+    display: flex;
+}
+.header__input {
+    border: none;
+    border-bottom: .5px solid $font;
+    width: 308px;
+}
+.header__icon {
+    &:first-of-type {
+        margin-right: 19px;
+    }
+    &:nth-of-type(2), &:nth-of-type(3) {
+        margin-right: 15px;
+    }
+}
+.header__form {
+    margin-right: 39px;
+}
