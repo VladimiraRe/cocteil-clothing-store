@@ -1,17 +1,15 @@
-@mixin fontRoboto($weight, $size, $lh, $ls, $color) {
+@mixin fontRoboto($weight, $size, $lh, $color) {
     font-family: "Roboto", sans-serif;
     font-weight: $weight;
     font-size: $size;
     line-height: $lh;
-    letter-spacing: $ls;
     color: $color;
 }
 
-@mixin fontBadScript($weight, $size, $lh, $ls, $color) {
+@mixin fontBadScript($weight, $size, $lh, $color) {
     font-family: "BadScript", sans-serif;
     font-weight: $weight;
     font-size: $size;
     line-height: $lh;
-    letter-spacing: $ls;
     color: $color;
 }

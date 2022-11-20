@@ -1,0 +1,55 @@
+.button {
+    background-color: $accent;
+}
+.button--big-circle {
+    width: 135px;
+    height: 135px;
+    border-radius: 50%;
+    position: relative;
+
+    @media (min-width: $tablet-width) {
+        background-color: $main;
+        border: 1px solid $accent;
+        width: 193px;
+        height: 193px;
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+    }
+    & > .button__txt {
+        @include fontRoboto(300, 16px, 19px, $main);
+        position: absolute;
+        top: 50px;
+        left: 24px;
+        @media (min-width: $tablet-width) {
+            @include fontRoboto(300, 20px, 23px, $accent);
+            top: 73px;
+            left: 30px;
+        }
+    }
+    & > .button__arrow {
+        width: 50px;
+        position: absolute;
+        bottom: 45px;
+        right: 23px;
+
+        @media (min-width: $tablet-width) {
+            width: 79px;
+            bottom: 68px;
+            right: 30px;
+        }
+
+        & > g > path {
+            @media (min-width: $tablet-width) {
+                fill: $accent;
+            }
+        }
+    }
+}
+.button__arrow {
+    & > g > path {
+        fill: $main;
+    }
+}
