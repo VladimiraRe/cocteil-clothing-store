@@ -74,12 +74,19 @@
 }
 .main__figure {
     @media (min-width: $tablet-width) {
+        display: flex;
+        justify-content: space-between;
         width: 100vw;
         min-height: 416px;
         position: absolute;
         top: 0;
         left: -1 * $tabletPaddingX;
         overflow: hidden;
+    }
+
+    @media (min-width: ($desktop-width - $desktopPaddingX * 2)) {
+        left: 0;
+        width: 100%;
     }
 
     &::before {
@@ -107,9 +114,9 @@
         height: 100vh;
         width: 100vw;
         @media (min-width: $tablet-width) {
-            position: absolute;
-            left: -1 * $tabletPaddingX;
-            top: 0;
+            position: relative;
+            margin-right: 416px;
+            flex-shrink: 0;
             background: none;
             width: 278px;
             height: 242px;
@@ -119,9 +126,7 @@
         display: none;
         @media (min-width: $tablet-width) {
             display: block;
-            position: absolute;
-            top: 0;
-            left: 694px;
+            position: relative;
             width: 476px;
             height: 416px;
         }
