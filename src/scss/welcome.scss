@@ -1,0 +1,169 @@
+.welcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    gap: 30px;
+    position: relative;
+    z-index: 1;
+
+    @media (min-width: $tablet-width) {
+        height: auto;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 0;
+    }
+}
+.welcome__title {
+    @include fontRoboto(300, 37px, 46px, $main);
+    margin-top: auto;
+    text-align: center;
+
+    @media (min-width: $tablet-width) {
+        padding-top: 302px;
+        @include fontRoboto(300, 60px, 1.2em, $second);
+        width: 537px;
+        text-align: left;
+        margin-top: 0;
+        margin-bottom: 60px;
+    }
+}
+.welcome__name {
+    @include fontBadScript(300, 40px, 46px, $main);
+
+    @media (min-width: $tablet-width) {
+        @include fontBadScript(300, 60px, 1.2em, $accent);
+    }
+}
+.welcome__txt {
+    @include fontRoboto(300, 14px, 16.5px, $main);
+    text-align: center;
+
+    @media (min-width: $tablet-width) {
+        @include fontRoboto(300, 16px, 19px, $font);
+        text-align: left;
+    }
+}
+.welcome__figure {
+    @media (min-width: $tablet-width) {
+        display: flex;
+        justify-content: space-between;
+        width: 100vw;
+        min-height: 416px;
+        position: absolute;
+        top: 0;
+        left: -1 * $tabletPaddingX;
+        overflow: hidden;
+    }
+
+    @media (min-width: ($desktop-width - $desktopPaddingX * 2)) {
+        left: 0;
+        width: 100%;
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: -11px;
+        left: -1 * $mobilePaddingX;
+        z-index: -1;
+        height: 100vh;
+        width: 100vw;
+        background-color: rgba(18, 18, 18, 0.2);
+        @media (min-width: $tablet-width) {
+            content: none;
+        }
+    }
+}
+.welcome__img {
+    object-fit: cover;
+
+    &:first-of-type {
+        position: absolute;
+        z-index: -2;
+        top: -11px;
+        left: -1 * $mobilePaddingX;
+        height: 100vh;
+        width: 100vw;
+        @media (min-width: $tablet-width) {
+            position: relative;
+            margin-right: 416px;
+            flex-shrink: 0;
+            background: none;
+            width: 278px;
+            height: 242px;
+        }
+    }
+    &:last-of-type {
+        display: none;
+        @media (min-width: $tablet-width) {
+            display: block;
+            position: relative;
+            width: 476px;
+            height: 416px;
+        }
+    }
+}
+.welcome__btn-catalog {
+    @media (min-width: $tablet-width) {
+        align-self: center;
+    }
+}
+.welcome__categories {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+    position: relative;
+    height: 35px;
+
+    @media (min-width: $tablet-width) {
+        display: none;
+    }
+
+    &::before {
+        content: '';
+        width: 100vw;
+        height: 100%;
+        z-index: -1;
+        display: block;
+        position: absolute;
+        background-color: $main;
+        left: -1 * $mobilePaddingX;
+        border-radius: 10px 10px 0 0;
+        box-shadow: 0px 4px 10px rgba(81, 74, 126, 0.2);
+    }
+}
+.welcome__categories-item {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+
+    &:first-of-type > .welcome__categories-link {
+        &:hover {
+            box-shadow: 6px 4px 10px -4px rgba(81, 74, 126, 0.2);
+            border-radius: 10px 10px 0px 0px;
+        }
+    }
+    &:nth-of-type(2) > .welcome__categories-link {
+        &:hover {
+            box-shadow: 0px 4px 10px rgba(81, 74, 126, 0.2);
+            border-radius: 10px 10px 0px 0px;
+        }
+    }
+    &:last-of-type > .welcome__categories-link {
+        &:hover {
+            box-shadow: -6px 4px 10px -4px rgba(81, 74, 126, 0.2);
+            border-radius: 10px 10px 0px 0px;
+        }
+    }
+}
+.welcome__categories-link {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    @include fontRoboto(300, 12px, 14px, $font);
+}
