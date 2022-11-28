@@ -141,3 +141,12 @@
         }
     }
 }
+.section__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 30px;
+}
+.section__item {
+    flex-basis: 47%;
+}

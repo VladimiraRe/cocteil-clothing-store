@@ -1,5 +1,18 @@
 .button {
     background-color: $accent;
+    width: 148px;
+    height: 37px;
+}
+.button__txt {
+    font-family: "Roboto", sans-serif;
+    color: $main;
+    padding-right: 9px;
+}
+.button__arrow {
+    width: 25px;
+    & > g > path {
+        fill: $main;
+    }
 }
 .button--big-circle {
     width: 135px;
@@ -8,23 +21,20 @@
     position: relative;
 
     @media (min-width: $tablet-width) {
-        background-color: $main;
-        border: 1px solid $accent;
         width: 193px;
         height: 193px;
     }
 
-    &::before {
-        content: "";
-        position: absolute;
-    }
     & > .button__txt {
-        @include fontRoboto(300, 16px, 19px, $main);
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 19px;
         position: absolute;
         top: 50px;
         left: 24px;
         @media (min-width: $tablet-width) {
-            @include fontRoboto(300, 20px, 23px, $accent);
+            font-size: 20px;
+            line-height: 23px;
             top: 73px;
             left: 30px;
         }
@@ -40,16 +50,27 @@
             bottom: 68px;
             right: 30px;
         }
+    }
+}
+.button--chameleon {
+    @media (min-width: $tablet-width) {
+        background-color: $main;
+        border: 1px solid $accent;
 
-        & > g > path {
-            @media (min-width: $tablet-width) {
+        & > .button__arrow {
+            & > g > path {
                 fill: $accent;
             }
         }
+
+        & > .button__txt {
+            color: $accent;
+        }
     }
-}
-.button__arrow {
-    & > g > path {
-        fill: $main;
+
+    & > .button__txt {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 16px;
     }
 }

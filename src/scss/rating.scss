@@ -1,0 +1,9 @@
+.rating {
+    display: flex;
+    gap: 5px;
+}
+.rating__icon {
+    & > path {
+        fill: $accent;
+    }
+}
