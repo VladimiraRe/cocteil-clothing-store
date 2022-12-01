@@ -1,26 +1,28 @@
 import Swiper from './swiper-bundle.min2';
 
-var mobileSwipers;
-var stableSwipers;
-var isActive = false;
-const configForSwiper = [
-    [
+const isActive = { advantages: false, catchSwiper: false };
+let advantages;
+let catchSwiper;
+const configForSwiper = {
+    advantages: [
         '.section__advantages-swiper',
         'navigation',
         2,
         26,
-        [
-            [2, 26],
-            [2, 26],
-            [2, 26],
-            [2, 26],
-            [2, 26],
-            [2, 26]
-        ],
+        false,
         true,
         ['.section__advantages-nav--next', '.section__advantages-nav--prev']
+    ],
+    catchSwiper: [
+        '.section__catch-swiper',
+        'navigation',
+        0,
+        20,
+        { 768: [3.2, 20], 880: [3.4, 20], 992: [3.7, 20], 1170: [4, 20] },
+        false,
+        ['.section__catch-nav--next', '.section__catch-nav--prev']
     ]
-];
+};
 
 checker();
 
@@ -29,29 +31,41 @@ window.addEventListener('resize', () => {
 });
 
 function checker() {
-    if (!isActive && window.innerWidth < 768) {
-        sliderInit();
+    if (document.documentElement.clientWidth < 768) {
+        if (!isActive.advantages) {
+            advantages = sliderInit('advantages', configForSwiper.advantages);
+        }
+        if (isActive.catchSwiper) sliderDestroy(catchSwiper);
         return;
     }
-    if (isActive && window.innerWidth >= 768) {
-        sliderDestroy(mobileSwipers);
+    if (document.documentElement.clientWidth >= 768) {
+        if (!isActive.catchSwiper) {
+            catchSwiper = sliderInit(
+                'catchSwiper',
+                configForSwiper.catchSwiper
+            );
+        }
+        if (isActive.advantages) sliderDestroy(advantages);
         return;
     }
 }
 
-function sliderInit() {
-    mobileSwipers = [createSwiper(...configForSwiper[0])];
-    isActive = true;
-    console.log(typeof mobileSwipers[0]);
+function sliderInit(swiperName, config) {
+    isActive[swiperName] = true;
+    const newSwiper = createSwiper(...config);
+    newSwiper.swiperName = swiperName;
+    return newSwiper;
 }
 
-function sliderDestroy(swipers) {
-    swipers.forEach((swiper) => {
-        Array.isArray(swiper)
-            ? sliderDestroy(swiper)
-            : swiper.destroy(true, true);
+function sliderDestroy(swiper) {
+    isActive[swiper.swiperName] = false;
+    if (!Array.isArray(swiper)) {
+        swiper.destroy(true, true);
+        return;
+    }
+    swiper.forEach((el) => {
+        Array.isArray(el) ? sliderDestroy(el) : el.destroy(true, true);
     });
-    isActive = false;
 }
 
 function createSwiper(
@@ -59,7 +73,7 @@ function createSwiper(
     move,
     slidesPerView,
     spaceBetween,
-    brPs,
+    breakpoints,
     autoplay,
     btnsClasses
 ) {
@@ -74,34 +88,7 @@ function createSwiper(
         [move]: createNavigation(move, btnsClasses),
 
         slidesPerView: slidesPerView,
-        spaceBetween: spaceBetween,
-        //Responsive breakpoints
-        breakpoints: {
-            375: {
-                slidesPerView: brPs[0][0],
-                spaceBetween: brPs[0][1]
-            },
-            480: {
-                slidesPerView: brPs[1][0],
-                spaceBetween: brPs[1][1]
-            },
-            576: {
-                slidesPerView: brPs[2][0],
-                spaceBetween: brPs[2][1]
-            },
-            640: {
-                slidesPerView: brPs[3][0],
-                spaceBetween: brPs[3][1]
-            },
-            768: {
-                slidesPerView: brPs[4][0],
-                spaceBetween: brPs[4][1]
-            },
-            1440: {
-                slidesPerView: brPs[5][0],
-                spaceBetween: brPs[5][1]
-            }
-        }
+        spaceBetween: spaceBetween
     };
 
     if (autoplay) {
@@ -109,6 +96,10 @@ function createSwiper(
             delay: 5000,
             pauseOnMouseEnter: true
         };
+    }
+
+    if (breakpoints) {
+        config.breakpoints = createBreakpoints(breakpoints);
     }
 
     return new Swiper(className, config);
@@ -131,5 +122,16 @@ function createSwiper(
             };
         }
         return obj;
+    }
+
+    function createBreakpoints(obj) {
+        const breakpoints = {};
+        for (let breakpoint in obj) {
+            breakpoints[breakpoint] = {
+                slidesPerView: obj[breakpoint][0],
+                spaceBetween: obj[breakpoint][1]
+            };
+        }
+        return breakpoints;
     }
 }

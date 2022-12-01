@@ -2,11 +2,16 @@
     background-color: $accent;
     width: 148px;
     height: 37px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 .button__txt {
     font-family: "Roboto", sans-serif;
     color: $main;
     padding-right: 9px;
+    font-size: 12px;
+    line-height: 14px;
 }
 .button__arrow {
     width: 25px;

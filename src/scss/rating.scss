@@ -1,6 +1,8 @@
 .rating {
     display: flex;
+    align-items: flex-end;
     gap: 5px;
+    line-height: 0;
 }
 .rating__icon {
     & > path {
