@@ -8,11 +8,17 @@
         display: flex;
     }
 }
+.header__burger {
+    width: 36px;
+    height: 36px;
+}
 .header__list {
     display: flex;
+    align-items: center;
     gap: 15px;
 }
 .header__item {
+    line-height: 0;
     &:first-of-type {
         display: flex;
         gap: 19px;

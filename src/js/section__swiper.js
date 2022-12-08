@@ -2,7 +2,7 @@ import Swiper from './swiper-bundle.min2';
 
 const isActive = { advantages: false, catchSwiper: false };
 let advantages;
-let catchSwiper;
+let additionalSwiper;
 const configForSwiper = {
     advantages: [
         '.section__advantages-swiper',
@@ -13,14 +13,14 @@ const configForSwiper = {
         true,
         ['.section__advantages-nav--next', '.section__advantages-nav--prev']
     ],
-    catchSwiper: [
-        '.section__catch-swiper',
+    additionalSwiper: [
+        '.section__additional-swiper',
         'navigation',
         0,
         20,
         { 768: [3.2, 20], 880: [3.4, 20], 992: [3.7, 20], 1170: [4, 20] },
         false,
-        ['.section__catch-nav--next', '.section__catch-nav--prev']
+        ['.section__additional-nav--next', '.section__additional-nav--prev']
     ]
 };
 
@@ -35,14 +35,14 @@ function checker() {
         if (!isActive.advantages) {
             advantages = sliderInit('advantages', configForSwiper.advantages);
         }
-        if (isActive.catchSwiper) sliderDestroy(catchSwiper);
+        if (isActive.additionalSwiper) sliderDestroy(additionalSwiper);
         return;
     }
     if (document.documentElement.clientWidth >= 768) {
-        if (!isActive.catchSwiper) {
-            catchSwiper = sliderInit(
-                'catchSwiper',
-                configForSwiper.catchSwiper
+        if (!isActive.additionalSwiper) {
+            additionalSwiper = sliderInit(
+                'additionalSwiper',
+                configForSwiper.additionalSwiper
             );
         }
         if (isActive.advantages) sliderDestroy(advantages);
