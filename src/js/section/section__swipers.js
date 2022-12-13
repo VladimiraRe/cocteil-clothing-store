@@ -1,4 +1,5 @@
-import Swiper from './swiper-bundle.min2';
+import Swiper from '../swiper-bundle.min2.js';
+import { renderCards as renderCardsForAdvantages } from './section__additional-swiper.mjs';
 
 const isActive = { advantages: false, catchSwiper: false };
 let advantages;
@@ -25,12 +26,11 @@ const configForSwiper = {
 };
 
 checker();
-
 window.addEventListener('resize', () => {
     checker();
 });
 
-function checker() {
+async function checker() {
     if (document.documentElement.clientWidth < 768) {
         if (!isActive.advantages) {
             advantages = sliderInit('advantages', configForSwiper.advantages);
@@ -38,13 +38,17 @@ function checker() {
         if (isActive.additionalSwiper) sliderDestroy(additionalSwiper);
         return;
     }
+
     if (document.documentElement.clientWidth >= 768) {
         if (!isActive.additionalSwiper) {
+            await renderCardsForAdvantages();
+
             additionalSwiper = sliderInit(
                 'additionalSwiper',
                 configForSwiper.additionalSwiper
             );
         }
+
         if (isActive.advantages) sliderDestroy(advantages);
         return;
     }

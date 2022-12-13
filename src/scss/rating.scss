@@ -5,6 +5,11 @@
     line-height: 0;
 }
 .rating__icon {
+    width: 9.2px;
+    height: 8.8px;
+    background: url('../img/rating/rating.svg') no-repeat;
+    background-size: contain;
+
     & > path {
         fill: $accent;
     }

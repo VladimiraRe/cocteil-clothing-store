@@ -1,5 +1,6 @@
 .product-card {
     text-align: start;
+    position: relative;
 
     & .product-card__btn {
         display: none;
@@ -21,6 +22,17 @@
         @media (min-width: 800px) {
             flex-direction: row;
         }
+    }
+}
+.product-card__link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    @media (min-width: $tablet-width) {
+        display: none;
     }
 }
 .product-card__wrap {

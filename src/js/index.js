@@ -1,3 +1,4 @@
 import '../scss/style.scss';
-import '../js/swiper-bundle.min2';
-import '../js/section__swiper';
+import './swiper-bundle.min2.js';
+import './section/section__additional-swiper.mjs';
+import './section/section__swipers.js';

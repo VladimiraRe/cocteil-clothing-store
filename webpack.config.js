@@ -46,6 +46,11 @@ module.exports = {
         // Копируем картинки
         new CopyWebpackPlugin({
             patterns: [{ from: './src/img', to: 'img' }]
+        }),
+
+        // Копируем json
+        new CopyWebpackPlugin({
+            patterns: [{ from: './src/db', to: 'db' }]
         })
     ],
     module: {
